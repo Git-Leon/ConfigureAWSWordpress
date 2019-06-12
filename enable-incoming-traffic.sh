@@ -1,5 +1,6 @@
 #!/bin/bash
-source ./import_utils.sh
+#source ~/environment/aws-wordpress-installation/import_utils.sh
+source ~/environment/import_utils.sh
 
 
 enableIncomingTraffic() {

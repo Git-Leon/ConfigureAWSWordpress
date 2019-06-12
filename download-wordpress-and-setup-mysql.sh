@@ -1,3 +1,5 @@
+#!/bin/bash
+#source ~/environment/aws-wordpress-installation/import_utils.sh
 source ./import_utils.sh
 
 updateSecurity() {
