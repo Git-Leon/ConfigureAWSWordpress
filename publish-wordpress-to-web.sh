@@ -49,16 +49,19 @@ changeWordpressEnvironmentPermissions() {
   sudo find /home/ec2-user/environment/wordpress -type d -exec chmod u=rwx,g=rx,o=rx {} \; # Change /home/ec2-user/environment/wordpress directory permissions to user read/write/execute, group read/execute, and others read/execute.
 }
 
-printNextStep() {
+printViewWebsite() {
   echo Run the WordPress website from within the AWS Cloud9 IDE by pressing \`Run\` from the top menu bar
   echo View the WordPress website from within the AWS Cloud9 IDE.
   echo To do this, on the main menu bar, choose Preview, Preview Running Application.
   echo A new window opens in the IDE and displays a Not Found page. This is expected at this point.
-  echo Open the WordPress website in a new tab within the same web browser as the AWS Cloud9 IDE.
-  echo To do this, on the address bar in the new window, choose Pop Out Into New Window.
+  echo  Open the WordPress website in a new tab by selecting \'Pop Out Into New Window\' on the address bar.
   echo The new tab displays the same Not Found page, which is still expected at this point.
-  echo In the new tab within the same web browser as the AWS Cloud9 IDE, add /index.php to the end of the existing URL, and then press Enter.
+  echo In the new tab add /index.php to the end of the existing URL, and then press Enter.
   echo The WordPress websites home page is displayed
+}
+
+printNextStep() {
+  printViewWebsite
 }
 
 

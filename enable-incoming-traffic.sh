@@ -28,7 +28,7 @@ execute() {
   echo enabling incoming traffic
   if promptUser $1; then enableIncomingTraffic; fi
 
-  echo getting uri of wordpress `index.html`
+  echo getting uri of wordpress \`index.html\`
   if promptUser $1; then getIndexPageURI; fi
 
   printNextStep
