@@ -53,7 +53,7 @@ printHowToCreateDatabase() {
  echo Create a MySQL database for the WordPress site to use.
  echo To do this, run the following command, replacing \"my_db_name\" with a name for the new database, for example, \"mysite\".
  echo Be sure to save this database name in a secure location for later use.
- echo CREATE DATABASE \'my_db_name\';
+ echo CREATE DATABASE \`my_db_name\`;
 }
 
 printHowToCreateDatabaseUser() {

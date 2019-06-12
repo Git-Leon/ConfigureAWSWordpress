@@ -50,6 +50,7 @@ changeWordpressEnvironmentPermissions() {
 }
 
 printNextStep() {
+  echo Run the WordPress website from within the AWS Cloud9 IDE by pressing \`Run\` from the top menu bar
   echo View the WordPress website from within the AWS Cloud9 IDE.
   echo To do this, on the main menu bar, choose Preview, Preview Running Application.
   echo A new window opens in the IDE and displays a Not Found page. This is expected at this point.
