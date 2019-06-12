@@ -18,17 +18,12 @@ getIndexPageURI() {
   MY_PUBLIC_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && echo http://$MY_PUBLIC_IP:8080/index.php # Get the URL to the index.php file within the web server root.
 }
 
-printNextStep() {
-  echo use a new web browser tab separate from the AWS Cloud9 IDE to go to the URL that is displayed.
-  echo If successful, the webpage displays the WordPress website home page.
-}
-
 
 execute() {
-  echo enabling incoming traffic
+  echo Part 4, Step 14 - enabling incoming traffic
   if promptUser $1; then enableIncomingTraffic; fi
 
-  echo getting uri of wordpress \`index.html\`
+  echo Part 4, Step 15 - getting uri of wordpress \`index.html\`
   if promptUser $1; then getIndexPageURI; fi
 
   printNextStep

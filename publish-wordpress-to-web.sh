@@ -49,7 +49,9 @@ changeWordpressEnvironmentPermissions() {
   sudo find /home/ec2-user/environment/wordpress -type d -exec chmod u=rwx,g=rx,o=rx {} \; # Change /home/ec2-user/environment/wordpress directory permissions to user read/write/execute, group read/execute, and others read/execute.
 }
 
-printViewWebsite() {
+
+
+printNextStep() {
   echo Run the WordPress website from within the AWS Cloud9 IDE by pressing \`Run\` from the top menu bar
   echo View the WordPress website from within the AWS Cloud9 IDE.
   echo To do this, on the main menu bar, choose Preview, Preview Running Application.
@@ -60,28 +62,44 @@ printViewWebsite() {
   echo The WordPress websites home page is displayed
 }
 
-printNextStep() {
-  printViewWebsite
-}
 
 
 execute() {
-  echo creating web content group
+  echo Part 4, Step 2 - backing up copies of key Apache HTTP Server configuration files
+  if promptUser $1; then backupApacheHTTPServerKey; fi
+
+  echo Part 4, Step 3 - binding Apache HTTP Server to port 8080, instead of the default port of 80.
+  if promptUser $1; then bindApacheHTTPServerTo8080; fi
+
+  echo Part 4, Step 4 - changing virtual host settings to listen on port 8080
+  if promptUser $1; then changeVirtualHostPort; fi
+
+  echo Part 4, Step 5 - restarting Apache HTTP Server to have it use the new settings
+  if promptUser $1; then restartApacheServer; fi
+
+  echo Part 4, Step 6 and 7 - setting Apache HTTP Server to use the WordPress websites root directory
+  if promptUser $1; then setServerRootDirectory; fi
+
+  echo Part 4, Step 6 and 7 - setting document root
+  if promptUser $1; then setDocumentRoot; fi
+
+  echo Part 4, Step 9A - creating web content group
   if promptUser $1; then createWebContentGroup; fi
 
-  echo adding EC2 user
+  echo Part 4, Step 9B - adding EC2 user
   if promptUser $1; then addEC2User; fi
 
-  echo adding apache user
+  echo Part 4, Step 9C - adding apache user
   if promptUser $1; then addApacheUser; fi
 
-  echo changing wordpress environment owner
+  echo Part 4, Step 9D - changing wordpress environment owner
   if promptUser $1; then changeWordpressEnvironmentOwner; fi
 
-  echo changing wordpress environment permissions
+  echo Part 4, Step 9E - changing wordpress environment permissions
   if promptUser $1; then changeWordpressEnvironmentPermissions; fi
 
-  echo restarting apache server
+
+  echo Part 4, Step 10 - restarting Apache HTTP Server to have it use the new settings
   if promptUser $1; then restartApacheServer; fi
 
   printNextStep

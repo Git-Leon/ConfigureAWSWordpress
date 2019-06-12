@@ -69,6 +69,7 @@ startMySQLAsRoot() {
 }
 
 printNextStep() {
+	echo Rename \`wp-config-sample.php\` to \`wp-config.php\`
 	echo Configure the \`wp-config.php\` file for the WordPress website before continuing.
 	echo To do this, double-click the \`wp-config.php\` file to open it in the editor, replace the following values, and then save and close the file.
 	echo Replace \`database_name_here\` with the name of the MySQL database that you created earlier.
@@ -78,42 +79,44 @@ printNextStep() {
 
 
 execute() {
-	echo updating with latest security
+	echo Step 1, Part 1 - updating with latest security
 	if promptUser $1; then updateSecurity; fi
 
-	echo installing Apache HTTP Server
+	echo Step 1, Part 2 - installing Apache HTTP Server
 	if promptUser $1; then installApacheServer; fi
 
-	echo installing PHP
+	echo Step 1, Part 3 - installing PHP
 	if promptUser $1; then installPHP; fi
 
-	echo installing SQL
+	echo Step 1, Part 4 - installing SQL
 	if promptUser $1; then installSQL; fi
 
-	echo starting apache server
+	echo Step 1, Part 5A - starting apache server
 	if promptUser $1; then startApacheServer; fi
 
-	echo checking server run-status
+	echo Step 1, Part 5B - checking server run-status
 	if promptUser $1; then checkServerRunStatus; fi
 
-	echo starting MySQL
+	echo Step 1, Part 6A - starting MySQL
 	if promptUser $1; then startMySQL; fi
 
-	echo checking server
+	echo Step 1, Part 6B - checking server
 	if promptUser $1; then checkMySQLStatus; fi
 
-	echo downloading wordpress
+	echo Step 1, Part 7 - downloading wordpress
 	if promptUser $1; then downloadWordPress; fi
 
-	echo installing wordpressing
+	echo Step 1, Part 8 - installing wordpressing
 	if promptUser $1; then installWordPress; fi
 
-	echo beginning MySQL setup
+	echo Step 2, Part 1 and 2 - beginning MySQL setup
 	if promptUser $1; then setUpMySQL; fi
 
-	echo starting mysql as root user
+	echo Step 2, Part 3 - starting mysql as root user
 	if promptUser $1; then startMySQLAsRoot; fi
 
+	sleep 1
+	echo Step 3, Part 1 and 2 - edit \`wp-config-sample.php\`.
 	printNextStep
 }
 
