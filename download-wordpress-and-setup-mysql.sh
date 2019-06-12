@@ -1,4 +1,4 @@
-./import_utils.sh
+source ./import_utils.sh
 
 updateSecurity() {
   sudo yum -y update
@@ -51,7 +51,7 @@ startMySQLAsRoot() {
 	sudo mysql -uroot -p
 }
 
-printEditConfig() {
+printNextStep() {
 	echo Configure the `wp-config.php` file for the WordPress website before continuing.
 	echo To do this, double-click the `wp-config.php` file to open it in the editor, replace the following values, and then save and close the file.
   echo Replace `database_name_here` with the name of the MySQL database that you created earlier.
@@ -60,7 +60,7 @@ printEditConfig() {
 }
 
 
-downloadWordPressAndSetupMySQL() {
+execute() {
 	echo updating with latest security
 	if promptUser $1; then updateSecurity; fi
 
@@ -97,8 +97,8 @@ downloadWordPressAndSetupMySQL() {
 	echo starting mysql as root user
 	if promptUser $1; then startMySQLAsRoot; fi
 
-	printEditConfig
+	printNextStep
 }
 
 
-downloadWordPressAndSetupMySQL
+execute

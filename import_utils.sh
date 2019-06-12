@@ -1,3 +1,5 @@
+#!/bin/bash
+
 promptUser() {
 	while true; do
 	    read -p "Do you wish to execute this command?" yn
@@ -10,4 +12,4 @@ promptUser() {
 }
 
 
-export -f promptUser()
+export -f promptUser
