@@ -8,3 +8,6 @@ promptUser() {
 	    esac
 	done
 }
+
+
+export -f promptUser()
