@@ -80,7 +80,7 @@ printRenameAndSetConfiguration() {
 }
 
 printSetWordPressWebsiteLanguage() {
-  echo -e "\nStep 3, Part 6 - rename and configure config file"
+  echo -e "\nStep 3, Part 6 - configure wordpress website settings"
   echo "Set the WordPress website's language, user name, password, and other settings."
   echo "To do this, add /wordpress/ to the end of the existing URL in the application preview."
   echo "The WordPress > Installation webpage is displayed."
