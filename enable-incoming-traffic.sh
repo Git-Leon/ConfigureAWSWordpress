@@ -20,13 +20,13 @@ getIndexPageURI() {
 
 
 execute() {
-  echo Part 4, Step 14 - enabling incoming traffic
+  echo -e "\nPart 4, Step 14 - enabling incoming traffic"
   if promptUser $1; then enableIncomingTraffic; fi
 
-  echo Part 4, Step 15 - getting uri of wordpress \`index.html\`
+  echo -e "\nPart 4, Step 15 - getting uri of wordpress \`index.html\`"
   if promptUser $1; then getIndexPageURI; fi
-
-  printNextStep
+  
+  echo "Configuration complete"
 }
 
 
