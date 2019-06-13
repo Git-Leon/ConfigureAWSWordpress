@@ -2,7 +2,7 @@
 
 promptUser() {
 	while true; do
-	    read -p "Do you wish to execute this command?" yn
+	    read -p "Do you wish to continue?" yn
 	    case $yn in
 	        [Yy]* ) return 0; break;;
 	        [Nn]* ) exit;;

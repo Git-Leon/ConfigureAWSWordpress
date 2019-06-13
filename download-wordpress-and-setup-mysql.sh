@@ -54,13 +54,15 @@ printHowToCreateDatabase() {
  echo "To do this, run the following command, replacing 'wordpress_db' with a name for the new database, for example, 'mysite'."
  echo "Be sure to save this database name in a secure location for later use."
  echo "CREATE DATABASE wordpress_db;"
+ promptUser
+ 
 }
 
 printHowToCreateDatabaseUser() {
-  sleep 1
 	echo "Create a MySQL user for the WordPress site to use."
 	echo "To do this, run the following command, replacing 'wordpress_user' with the users name and replacing 'my_password' with a password for the user"
 	echo "GRANT ALL PRIVILEGES ON *.* TO 'wordpress_user'@'localhost' IDENTIFIED BY 'my_password';"
+	promptUser
 }
 
 startMySQLAsRoot() {
@@ -70,21 +72,38 @@ startMySQLAsRoot() {
 }
 
 printRenameAndSetConfiguration() {
-	echo -e "\nStep 3, Part 1, 2, and 3 - rename and configure config file"
-	echo "Rename \`wp-config-sample.php\` to \`wp-config.php\`"
-	echo "Configure the \`wp-config.php\` file for the WordPress website before continuing."
-	echo "To do this, double-click the \`wp-config.php\` file to open it in the editor, replace the following values, and then save and close the file."
+	echo -e "\nStep 3, Part 1 - rename \`wp-config-sample.php\` to \`wp-config.php\`"
+	promptUser
+	
+	echo -e "\nStep 3, Part 2 - Configure the \`wp-config.php\` file for the WordPress website before continuing."
+	promptUser
+	
+	echo -e "\nStep 3, Part 3 - Edit \`wp-config.php\` file to open it in the editor, replace the following values, and then save and close the file."
+	promptUser
+	
 	echo -e "\tReplace \`database_name_here\` with the name of the MySQL database that you created earlier."
+	promptUser
+	
 	echo -e "\tReplace \`username_here\` with the name of the MySQL user that you created earlier."
+	promptUser
+	
 	echo -e "\tReplace \`password_here\` with the password for the MySQL user that you created earlier."
+	promptUser
 }
 
 printSetWordPressWebsiteLanguage() {
-  echo -e "\nStep 3, Part 6 - configure wordpress website settings"
-  echo "Set the WordPress website's language, user name, password, and other settings."
+  echo -e "\nStep 3, Part 4 - preview application "
+  promptUser
+  
+  echo -e "\nStep 3, Part 5 - pop out application into new window"
+  promptUser
+
+  echo -e "\nStep 3, Part 6 - Set the WordPress website's language, user name, password, and other settings."
   echo "To do this, add /wordpress/ to the end of the existing URL in the application preview."
   echo "The WordPress > Installation webpage is displayed."
   echo "Follow the on-screen instructions to finish specifying the website's settings."
+  echo "Using the username and password of the MySQL user that you set earlier, fill out 'Information Needed' section."
+  promptUser
 }
 
 printSetWordPressUserAndPassword(){
@@ -99,43 +118,42 @@ printNextStep() {
 }
 
 execute() {
-	echo "Step 1, Part 1 - updating with latest security"
+	echo -e "\nStep 1, Part 1 - updating with latest security"
 	if promptUser $1; then updateSecurity; fi
 
-	echo "Step 1, Part 2 - installing Apache HTTP Server"
+	echo -e "\nStep 1, Part 2 - installing Apache HTTP Server"
 	if promptUser $1; then installApacheServer; fi
 
-	echo "Step 1, Part 3 - installing PHP"
+	echo -e "\nStep 1, Part 3 - installing PHP"
 	if promptUser $1; then installPHP; fi
 
-	echo "Step 1, Part 4 - installing SQL"
+	echo -e "\nStep 1, Part 4 - installing SQL"
 	if promptUser $1; then installSQL; fi
 
-	echo "Step 1, Part 5A - starting apache server"
+	echo -e "\nStep 1, Part 5A - starting apache server"
 	if promptUser $1; then startApacheServer; fi
 
-	echo "Step 1, Part 5B - checking server run-status"
+	echo -e "\nStep 1, Part 5B - checking server run-status"
 	if promptUser $1; then checkServerRunStatus; fi
 
-	echo "Step 1, Part 6A - starting MySQL"
+	echo -e "\nStep 1, Part 6A - starting MySQL"
 	if promptUser $1; then startMySQL; fi
 
-	echo "Step 1, Part 6B - checking server"
+	echo -e "\nStep 1, Part 6B - checking server"
 	if promptUser $1; then checkMySQLStatus; fi
 
-	echo "Step 1, Part 7 - downloading wordpress"
+	echo -e "\nStep 1, Part 7 - downloading wordpress"
 	if promptUser $1; then downloadWordPress; fi
 
-	echo "Step 1, Part 8 - installing wordpressing"
+	echo -e "\nStep 1, Part 8 - installing wordpressing"
 	if promptUser $1; then installWordPress; fi
 
-	echo "Step 2, Part 1 and 2 - beginning MySQL setup"
+	echo -e "\nStep 2, Part 1 and 2 - beginning MySQL setup"
 	if promptUser $1; then setUpMySQL; fi
 
-	echo "Step 2, Part 3 - starting mysql as root user"
+	echo -e "\nStep 2, Part 3 - starting mysql as root user"
 	if promptUser $1; then startMySQLAsRoot; fi
 
-	sleep 1
 	printNextStep
 }
 

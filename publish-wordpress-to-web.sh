@@ -55,13 +55,13 @@ changeWordpressEnvironmentPermissions() {
 printNextStep() {
   echo -e "\nRun the WordPress website from within the AWS Cloud9 IDE by pressing \`Run\` from the top menu bar"
   echo "View the WordPress website from within the AWS Cloud9 IDE."
-  echo "To do this, on the main menu bar, choose 'Preview' > 'Preview Running Application'"
-  echo "A new window opens in the IDE and displays a 'Not Found' page."
+  echo "select 'Preview' > 'Preview Running Application' from menu bar"
+  echo "'Not Found' page is displayed."
   echo -e "\tThis is expected at this point!"
-  echo "Open the WordPress website in a new tab by selecting 'Pop Out Into New Window' on the address bar."
-  echo "The new tab displays the same 'Not Found' page."
+  echo "select 'Pop Out Into New Window' from address bar."
+  echo "'Not Found' page is displayed."
   echo -e "\tThis is still expected at this point!"
-  echo "In the new tab add \`/index.php\` to the end of the existing URL, and then press Enter."
+  echo "add \`/index.php\` to the end of the existing URL"
   echo "The WordPress websites home page is displayed"
 }
 
@@ -70,44 +70,65 @@ printNextStep() {
 execute() {
   kill8080
 
-  echo Part 4, Step 2 - backing up copies of key Apache HTTP Server configuration files
+  echo -e "\nStep 4, Part 2 - backing up copies of key Apache HTTP Server configuration files"
   if promptUser $1; then backupApacheHTTPServerKey; fi
 
-  echo Part 4, Step 3 - binding Apache HTTP Server to port 8080, instead of the default port of 80.
+  echo -e "\nStep 4, Part 3 - binding Apache HTTP Server to port 8080, instead of the default port of 80."
   if promptUser $1; then bindApacheHTTPServerTo8080; fi
 
-  echo Part 4, Step 4 - changing virtual host settings to listen on port 8080
+  echo -e "\nStep 4, Part 4 - changing virtual host settings to listen on port 8080"
   if promptUser $1; then changeVirtualHostPort; fi
 
-  echo Part 4, Step 5 - restarting Apache HTTP Server to have it use the new settings
+  echo -e "\nStep 4, Part 5 - restarting Apache HTTP Server to have it use the new settings"
   if promptUser $1; then restartApacheServer; fi
 
-  echo Part 4, Step 6 and 7 - setting Apache HTTP Server to use the WordPress websites root directory
+  echo -e "\nStep 4, Part 6 - preview application"
+  promptUser
+
+  echo -e "\nStep 4, Part 7 - setting Apache HTTP Server to use the WordPress websites root directory"
   if promptUser $1; then setServerRootDirectory; fi
 
-  echo Part 4, Step 6 and 7 - setting document root
+  echo -e "\nStep 4, Part 8 - setting document root"
   if promptUser $1; then setDocumentRoot; fi
 
-  echo Part 4, Step 9A - creating web content group
+  echo -e "\nStep 4, Part 9A - creating web content group"
   if promptUser $1; then createWebContentGroup; fi
 
-  echo Part 4, Step 9B - adding EC2 user
+  echo -e "\nStep 4, Part 9B - adding EC2 user"
   if promptUser $1; then addEC2User; fi
 
-  echo Part 4, Step 9C - adding apache user
+  echo -e "\nStep 4, Part 9C - adding apache user"
   if promptUser $1; then addApacheUser; fi
 
-  echo Part 4, Step 9D - changing wordpress environment owner
+  echo -e "\nStep 4, Part 9D - changing wordpress environment owner"
   if promptUser $1; then changeWordpressEnvironmentOwner; fi
 
-  echo Part 4, Step 9E - changing wordpress environment permissions
+  echo -e "\nStep 4, Part 9E - changing wordpress environment permissions"
   if promptUser $1; then changeWordpressEnvironmentPermissions; fi
 
 
-  echo Part 4, Step 10 - restarting Apache HTTP Server to have it use the new settings
+  echo -e "\nStep 4, Part 10 - restarting Apache HTTP Server to have it use the new settings"
   if promptUser $1; then restartApacheServer; fi
+  
+  echo -e "\nStep 4, Part 11A - preview application"
+  promptUser
+  
+  echo -e "\nStep 4, Part 11B - 'Not Found' page is displayed (expected)"
+  promptUser
 
-  printNextStep
+  echo -e "\nStep 4, Part 12 - pop out application into new window"
+  promptUser
+  
+  echo -e "\nStep 4, Part 13A - append \`/index.php\` to the URL"
+  promptUser
+  
+  echo -e "\nStep 4, Part 13B - Wordpress website's home page is displayed"
+  promptUser
+  
+  echo -e "\nStep 4, Part 14 - Continue by running the \`enable-incoming-traffic.sh\` file"
+  promptUser
+
+  #printNextStep
 }
 
 execute
