@@ -57,8 +57,9 @@ printHowToCreateDatabase() {
 }
 
 printHowToCreateDatabaseUser() {
+  sleep 1
 	echo Create a MySQL user for the WordPress site to use.
-	echo To do this, run the following command, replacing \"my_user_name\" with the users name and replacing \"my_password\" with a password for the user
+	echo To do this, run the following command, replacing \'my_user_name\' with the users name and replacing \'my_password\' with a password for the user
 	echo GRANT ALL PRIVILEGES ON *.* TO \'my_user_name\'@\'localhost\' IDENTIFIED BY \'my_password\';
 }
 
