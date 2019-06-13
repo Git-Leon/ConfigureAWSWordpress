@@ -70,8 +70,8 @@ startMySQLAsRoot() {
 }
 
 printRenameAndSetConfiguration() {
-  echo "Step 3, Part 3 - rename and configure config file"
-	echo -e "\nRename \`wp-config-sample.php\` to \`wp-config.php\`"
+	echo -e "\nStep 3, Part 1, 2, and 3 - rename and configure config file"
+	echo "Rename \`wp-config-sample.php\` to \`wp-config.php\`"
 	echo "Configure the \`wp-config.php\` file for the WordPress website before continuing."
 	echo "To do this, double-click the \`wp-config.php\` file to open it in the editor, replace the following values, and then save and close the file."
 	echo -e "\tReplace \`database_name_here\` with the name of the MySQL database that you created earlier."
@@ -80,8 +80,8 @@ printRenameAndSetConfiguration() {
 }
 
 printSetWordPressWebsiteLanguage() {
-  echo "Step 3, Part 6 - rename and configure config file"
-  echo -e "\nSet the WordPress website's language, user name, password, and other settings."
+  echo -e "\nStep 3, Part 6 - rename and configure config file"
+  echo "Set the WordPress website's language, user name, password, and other settings."
   echo "To do this, add /wordpress/ to the end of the existing URL in the application preview."
   echo "The WordPress > Installation webpage is displayed."
   echo "Follow the on-screen instructions to finish specifying the website's settings."
@@ -136,7 +136,6 @@ execute() {
 	if promptUser $1; then startMySQLAsRoot; fi
 
 	sleep 1
-	echo "Step 3, Part 1 and 2 - edit \`wp-config-sample.php\`."
 	printNextStep
 }
 

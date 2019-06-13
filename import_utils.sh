@@ -11,5 +11,9 @@ promptUser() {
 	done
 }
 
+kill8080() {
+	fuser -k 8080/tcp
+}
 
 export -f promptUser
+export -f kill8080
