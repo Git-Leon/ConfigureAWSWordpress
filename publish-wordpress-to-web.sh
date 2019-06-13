@@ -68,8 +68,9 @@ printNextStep() {
 
 
 execute() {
-  kill8080
-
+  echo -e "\nStep 4, Part 1 - Stop running the wordpress application"
+  promptUser
+  
   echo -e "\nStep 4, Part 2 - backing up copies of key Apache HTTP Server configuration files"
   if promptUser $1; then backupApacheHTTPServerKey; fi
 

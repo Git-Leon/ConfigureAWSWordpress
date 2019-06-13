@@ -99,22 +99,16 @@ printSetWordPressWebsiteLanguage() {
   promptUser
 
   echo -e "\nStep 3, Part 6 - Set the WordPress website's language, user name, password, and other settings."
-  echo "To do this, add /wordpress/ to the end of the existing URL in the application preview."
-  echo "The WordPress > Installation webpage is displayed."
-  echo "Follow the on-screen instructions to finish specifying the website's settings."
-  echo "Using the username and password of the MySQL user that you set earlier, fill out 'Information Needed' section."
+  echo "add /wordpress/ to end of existing URL in application preview."
+  echo "WordPress > Installation webpage is displayed."
+  echo "Using the username and password of the MySQL user that you set earlier,\n\tfill out 'Information Needed' section."
   promptUser
-}
-
-printSetWordPressUserAndPassword(){
-  echo -e "\nImportant"
-  echo "In the Information needed section, for Username and Password, enter the user name (for example, wordpress_user) and password of the MySQL user that you set earlier for WordPress to use."
 }
 
 printNextStep() {
   printRenameAndSetConfiguration
   printSetWordPressWebsiteLanguage
-  printSetWordPressUserAndPassword
+  echo "continue by executing \`publish-wordpress-to-web.sh\` file."
 }
 
 execute() {
