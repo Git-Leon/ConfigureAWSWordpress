@@ -1,6 +1,6 @@
 #!/bin/bash
-#source ~/environment/aws-wordpress-installation/import_utils.sh
-source ./import_utils.sh
+source ~/environment/aws-wordpress-installation/import_utils.sh
+#source ./import_utils.sh
 
 backupApacheHTTPServerKey() {
   sudo cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
